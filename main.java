@@ -1,12 +1,3 @@
-// Define the MyList interface
-public interface MyList<E> {
-    void add(E element);
-    E get(int index);
-    void remove(int index);
-    int size();
-    // any other methods specified by the List interface
-}
-
 // Define the MyArrayList class that implements the MyList interface
 public class MyArrayList<E> implements MyList<E> {
     private Object[] elements;
@@ -18,7 +9,7 @@ public class MyArrayList<E> implements MyList<E> {
         size = 0;
     }
 
-    @Override
+
     public void add(E element) {
         // If the size of the array is not large enough, create a new array with double the size
         if (size == elements.length) {
@@ -34,7 +25,7 @@ public class MyArrayList<E> implements MyList<E> {
         size++;
     }
 
-    @Override
+
     public E get(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
@@ -42,7 +33,7 @@ public class MyArrayList<E> implements MyList<E> {
         return (E) elements[index];
     }
 
-    @Override
+
     public void remove(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
@@ -56,7 +47,7 @@ public class MyArrayList<E> implements MyList<E> {
         size--;
     }
 
-    @Override
+
     public int size() {
         return size;
     }
@@ -65,7 +56,7 @@ public class MyArrayList<E> implements MyList<E> {
 }
 
 // Define the MyLinkedList class that implements the MyList interface
-public class MyLinkedList<E> implements MyList<E> {
+public abstract class MyLinkedList<E> implements MyList<E> {
     private Node head;
     private Node tail;
     private int size;
@@ -90,7 +81,7 @@ public class MyLinkedList<E> implements MyList<E> {
         size = 0;
     }
 
-    @Override
+
     public void add(E element) {
         Node newNode = new Node(element, null, tail);
         // If the list is empty, set both the head and tail references to the new node
@@ -104,11 +95,29 @@ public class MyLinkedList<E> implements MyList<E> {
         size++;
     }
 
-    @Override
-    public E get(int index) {
+
+    public E get(int index, java.lang.Object[] elements) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
         }
         Node currentNode;
-        }}
+        return (E) elements[index];
+    }
         // Traverse the list from the head if the}
+
+    public void deleteDuplicate(int index, java.lang.Object[] elements){
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
+        }
+        for (int i=0; i<index; i++){
+            for (int j=0; j<index; j++) {
+                if (elements[i]==elements[j]){
+                    elements[j]=null;
+            }
+                else continue;
+            }
+        }
+}}
+
+
+
